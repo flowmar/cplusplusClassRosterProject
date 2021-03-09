@@ -25,7 +25,7 @@ private:
     string email;
     DegreeProgram degreeProgram;
     int age;
-    int numDaysToCompleteCourse[NUMBER_OF_COURSES];
+    int numDaysToCompleteCourse[Student::NUMBER_OF_COURSES];
     
 public:
     

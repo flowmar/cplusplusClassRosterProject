@@ -12,7 +12,7 @@ using namespace std;
 
 // Default Constructor
 Student::Student(){
-    cout << "Default Constructor called!" << endl;
+//    cout << "Default Constructor called!" << endl;
     studentId = "";
     firstName = "";
     lastName = "";
@@ -45,33 +45,41 @@ Student::~Student(){};
 // Definitions for mutators (setters)
 void Student::setStudentId(string stuId){
     studentId = stuId;
+    return;
 };
 void Student::setFirstName(string fName){
     firstName = fName;
+    return;
 };
 void Student::setLastName(string lName){
     lastName = lName;
+    return;
 };
 
 void Student::setEmailAddress(string emailAddress){
     email = emailAddress;
+    return;
 }
 void Student::setDegreeProgram(DegreeProgram program){
     degreeProgram = program;
+    return;
 };
 void Student::setAge(int studentAge){
     age = studentAge;
+    return;
 };
 void Student::setNumDaysToCompleteCourse(int* numDays){
     for(int m = 0; m < NUMBER_OF_COURSES; m++){
         numDaysToCompleteCourse[m] = numDays[m];
     }
+    return;
 };
 
 
 // Definitions for accessors (getters)
 string Student::getStudentId() const {
-    return studentId;
+    cout << "ID:::::::" << this->studentId << endl;
+    return this->studentId;
 };
 
 string Student::getFirstName() const {
@@ -115,7 +123,7 @@ void Student::print(){
     cout << "Email Address: " << getEmail() << endl;
     cout << "Age: " << getAge() << endl;
     cout << "Number of Days to Complete First Three Courses: " << endl;
-    int tempArray[] = {0, 0, 0};
+    int tempArray[3];
     int* numOfDays = this->getNumDaysToCompleteCourse();
     for(int w = 0; w < Student::NUMBER_OF_COURSES; w++){
         tempArray[w] = numOfDays[w];
