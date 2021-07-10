@@ -10,37 +10,46 @@
 using namespace std;
 
 
-// Default Constructor
+//// Default Constructor
 Student::Student(){
 //    cout << "Default Constructor called!" << endl;
-    studentId = "";
-    firstName = "";
-    lastName = "";
-    email = "";
-    degreeProgram = DegreeProgram::NONE;
-    age = 0;
-    for(int i = 0; i < Student::NUMBER_OF_COURSES; i++){
-        numDaysToCompleteCourse[i] = 0;
+    string studentId = "";
+    string firstName = "";
+    string lastName = "";
+    string email = "";
+    DegreeProgram program = DegreeProgram::NONE;
+    int age = 0;
+    int numDaysToCompleteCourses[Student::NUMBER_OF_COURSES];
+//    int* numDaysPtr = &numDays[0];
+    for(int i = 0; i < Student::NUMBER_OF_COURSES; i++)
+    {
+        numDaysToCompleteCourses[i] = 0;
     }
     return;
-}
+};
 
 // Student Constructor with parameters
-Student::Student(string stuId, string fname, string lname, string emailAddress, DegreeProgram program, int studentAge, int* numDays[Student::NUMBER_OF_COURSES]){
+Student::Student(string stuId, string fname, string lname, string emailAddress, DegreeProgram program, int studentAge, int numDaysToCompleteCourse[Student::NUMBER_OF_COURSES], int* numDaysPtr)
+{
     studentId = stuId;
     firstName = fname;
     lastName = lname;
     email = emailAddress;
     degreeProgram = program;
     age = studentAge;
-    for(int j = 0; j < Student::NUMBER_OF_COURSES; j++){
-        numDaysToCompleteCourse[j] = *numDays[j];
-    }
+    numDaysToCompleteCourses[0] = numDaysToCompleteCourse[0];
+    numDaysToCompleteCourses[1] = numDaysToCompleteCourse[1];
+    numDaysToCompleteCourses[2] = numDaysToCompleteCourse[2];
+    numDaysPtr = &numDaysToCompleteCourse[0];
+    
+    this->print();
     return;
 };
 
 // Student Destructor
-Student::~Student(){};
+Student::~Student(){
+//    cout << "Student Deleted!" << endl;
+};
 
 // Definitions for mutators (setters)
 void Student::setStudentId(string stuId){
@@ -68,17 +77,20 @@ void Student::setAge(int studentAge){
     age = studentAge;
     return;
 };
-void Student::setNumDaysToCompleteCourse(int* numDays){
-    for(int m = 0; m < NUMBER_OF_COURSES; m++){
-        numDaysToCompleteCourse[m] = numDays[m];
+void Student::setNumDaysToCompleteCourse(int* numberOfDaysPointer){
+    // Loop through the numberOfDays array by using the dereferenced numberOfDaysPointer and set the numDaysToComplete
+    // courses values
+    for(int l = 0; l < 3; l++)
+    {
+        numDaysToCompleteCourses[l] = *(numberOfDaysPointer + l);
     }
+    
     return;
 };
 
 
 // Definitions for accessors (getters)
 string Student::getStudentId() const {
-    cout << "ID:::::::" << this->studentId << endl;
     return this->studentId;
 };
 
@@ -110,26 +122,24 @@ int Student::getAge() const {
     return age;
 };
 
-int* Student::getNumDaysToCompleteCourse() {
-    return numDaysToCompleteCourse;
+string Student::getNumDaysToCompleteCourse()
+{
+    string values = std::to_string(numDaysToCompleteCourses[0]) + ", " + std::to_string(numDaysToCompleteCourses[1]) + ", " + std::to_string(numDaysToCompleteCourses[2]);
+    return values;
 };
 
 // Print Function Definition - Prints an individual student's information
 void Student::print(){
-    cout << "Student Information: " << endl;
+//    cout << "Student Information: " << endl;
     cout << "Student ID: " << this->getStudentId() << endl;
-    cout << "First Name: " << Student::getFirstName() << endl;
+    cout << "First Name: " << this->getFirstName() << endl;
     cout << "Last Name: " << this->getLastName() << endl;
-    cout << "Email Address: " << getEmail() << endl;
-    cout << "Age: " << getAge() << endl;
-    cout << "Number of Days to Complete First Three Courses: " << endl;
-    int tempArray[3];
-    int* numOfDays = this->getNumDaysToCompleteCourse();
-    for(int w = 0; w < Student::NUMBER_OF_COURSES; w++){
-        tempArray[w] = numOfDays[w];
-        cout << "Course " << w+1 << " " << numOfDays[w] << endl;
-    };
-    cout << "Degree Program: " << Student::getDegreeProgram() << endl;
+    cout << "Email Address: " << this->getEmail() << endl;
+    cout << "Age: " << this->getAge() << endl;
+    cout << "Number of Days to Complete First Three Courses: " << this->getNumDaysToCompleteCourse() << endl;
+    cout << "Degree Program: " << this->getDegreeProgram() << endl;
+    cout << endl;
     
     
 }
+

@@ -14,9 +14,7 @@
 
 using namespace std;
 
-class Student{
-public:
-    static const int NUMBER_OF_COURSES = 3;
+class Student {
     // Private class members
 private:
     string studentId;
@@ -25,9 +23,11 @@ private:
     string email;
     DegreeProgram degreeProgram;
     int age;
-    int numDaysToCompleteCourse[Student::NUMBER_OF_COURSES];
-    
+    int numDaysToCompleteCourses[3];
+    int* numDaysPtr = nullptr;
+
 public:
+    static const int NUMBER_OF_COURSES = 3;
     
     // Print function
     void print();
@@ -39,7 +39,8 @@ public:
     string getEmail() const;
     string getDegreeProgram() const;
     int getAge() const;
-    int* getNumDaysToCompleteCourse();
+    string getNumDaysToCompleteCourse();
+    
 
     // Mutators
     void setStudentId(string stuId);
@@ -48,14 +49,14 @@ public:
     void setEmailAddress(string emailAddress);
     void setDegreeProgram(DegreeProgram program);
     void setAge(int studentAge);
-    void setNumDaysToCompleteCourse(int* numDaysToCompleteCourse);
+    void setNumDaysToCompleteCourse(int* numberOfDaysPointer);
     
     // Constructors and Destructor
     Student();
-    Student(string studentId, string firstName, string lastName, string email, DegreeProgram degreeProgram, int age, int* numDaysToCompleteCourses[NUMBER_OF_COURSES]);
     ~Student();
+    Student(string studentId, string firstName, string lastName, string email, DegreeProgram degreeProgram, int age, int numDaysToCompleteCourse[NUMBER_OF_COURSES], int* numDaysPtr);
     
-
+    
 };
 
 
