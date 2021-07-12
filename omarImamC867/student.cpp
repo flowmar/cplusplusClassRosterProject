@@ -135,14 +135,16 @@ string Student::getNumDaysToCompleteCourseString()
 // Print Function Definition - Prints an individual student's information
 void Student::print(){
 //    cout << "Student Information: " << endl;
-    cout << "Student ID: " << this->getStudentId() << endl;
-    cout << "First Name: " << this->getFirstName() << endl;
-    cout << "Last Name: " << this->getLastName() << endl;
-    cout << "Email Address: " << this->getEmail() << endl;
-    cout << "Age: " << this->getAge() << endl;
-    cout << "Number of Days to Complete First Three Courses: " << this->getNumDaysToCompleteCourseString() << endl;
-    cout << "Degree Program: " << this->getDegreeProgramString() << endl;
-    cout << endl;
+//    cout << "Student ID: " << this->getStudentId() << endl;
+//    cout << "First Name: " << this->getFirstName() << endl;
+//    cout << "Last Name: " << this->getLastName() << endl;
+//    cout << "Email Address: " << this->getEmail() << endl;
+//    cout << "Age: " << this->getAge() << endl;
+//    cout << "Number of Days to Complete First Three Courses: " << this->getNumDaysToCompleteCourseString() << endl;
+//    cout << "Degree Program: " << this->getDegreeProgramString() << endl;
+//    cout << endl;
+    
+    cout << this->getStudentId() << "\tFirst Name: " << this->getFirstName() << "\tLast Name: " << this->getLastName() << "\tAge: " << this->getAge() << "\tEmail: " << this->getEmail() << "\tdaysInCourse: {" << this->getNumDaysToCompleteCourseString() << "}" << "\tDegree Program: " << this->getDegreeProgramString() << endl;
     
     
 }

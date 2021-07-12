@@ -515,13 +515,17 @@ void Roster::remove(string removeId){
 
 // Print all students in the roster
 void Roster::printAll() const {
+    
+    cout << "\nPrinting Roster...\n\n";
 //    // Loop through the classRosterArray to print out the values from each student
     for(int h =0; h < Roster::currentNumberOfStudents; h++)
     {
 //        cout << "Current Number of Students: " << currentNumberOfStudents << endl;
-        cout << Roster::classRosterArray[h].getStudentId() << "\tFirst Name: " << Roster::classRosterArray[h].getFirstName() << "\tLast Name: " << Roster::classRosterArray[h].getLastName() << "\tAge: " << Roster::classRosterArray[h].getAge() << "\tEmail: " << Roster::classRosterArray[h].getEmail() << "\tdaysInCourse: {" << Roster::classRosterArray[h].getNumDaysToCompleteCourseString() << "}" << "\tDegree Program: " << Roster::classRosterArray[h].getDegreeProgramString() << endl;
-        cout << endl;
-        cout << endl;
+//        cout << Roster::classRosterArray[h].getStudentId() << "\tFirst Name: " << Roster::classRosterArray[h].getFirstName() << "\tLast Name: " << Roster::classRosterArray[h].getLastName() << "\tAge: " << Roster::classRosterArray[h].getAge() << "\tEmail: " << Roster::classRosterArray[h].getEmail() << "\tdaysInCourse: {" << Roster::classRosterArray[h].getNumDaysToCompleteCourseString() << "}" << "\tDegree Program: " << Roster::classRosterArray[h].getDegreeProgramString() << endl;
+        Roster::classRosterArray[h].print();
+        cout << "\n";
+//        cout << endl;
+//        cout << endl;
     }
     
     return;
@@ -651,7 +655,7 @@ void Roster::printByDegreeProgram(DegreeProgram degreeProgram) const {
     {
         foundStudents.at(r).print();
     }
-
+    cout << "\n";
     return;
 };
 
