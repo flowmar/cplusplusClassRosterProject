@@ -390,7 +390,11 @@ void Roster::add(string studentId, string firstName, string lastName, string ema
 };
 
 // Destructor
-Roster::~Roster(){};
+Roster::~Roster(){
+    delete [] classRosterArray;
+    cout << "Roster Deleted!" << endl;
+    
+};
 
 // Remove a student from the roster by Id
 void Roster::remove(string removeId){
