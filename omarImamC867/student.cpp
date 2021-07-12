@@ -91,7 +91,7 @@ void Student::setNumDaysToCompleteCourse(int* numberOfDaysPointer){
 
 // Definitions for accessors (getters)
 string Student::getStudentId() const {
-    return this->studentId;
+    return studentId;
 };
 
 string Student::getFirstName() const {
@@ -106,7 +106,11 @@ string Student::getEmail() const {
     return email;
 };
 
-string Student::getDegreeProgram() const {
+DegreeProgram Student::getDegreeProgram() const {
+    return degreeProgram;
+};
+
+string Student::getDegreeProgramString() const {
     if(degreeProgram == DegreeProgram::SOFTWARE){
         return "SOFTWARE";
     } else if (degreeProgram == DegreeProgram::NETWORK) {
@@ -122,7 +126,7 @@ int Student::getAge() const {
     return age;
 };
 
-string Student::getNumDaysToCompleteCourse()
+string Student::getNumDaysToCompleteCourseString()
 {
     string values = std::to_string(numDaysToCompleteCourses[0]) + ", " + std::to_string(numDaysToCompleteCourses[1]) + ", " + std::to_string(numDaysToCompleteCourses[2]);
     return values;
@@ -136,8 +140,8 @@ void Student::print(){
     cout << "Last Name: " << this->getLastName() << endl;
     cout << "Email Address: " << this->getEmail() << endl;
     cout << "Age: " << this->getAge() << endl;
-    cout << "Number of Days to Complete First Three Courses: " << this->getNumDaysToCompleteCourse() << endl;
-    cout << "Degree Program: " << this->getDegreeProgram() << endl;
+    cout << "Number of Days to Complete First Three Courses: " << this->getNumDaysToCompleteCourseString() << endl;
+    cout << "Degree Program: " << this->getDegreeProgramString() << endl;
     cout << endl;
     
     

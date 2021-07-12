@@ -14,21 +14,19 @@
 // Array of students
 Student Roster::studentArray[INITIAL_NUMBER_OF_STUDENTS];
 
-
 // Array of pointers
-Student* classRosterArray1 = new Student [Roster::INITIAL_NUMBER_OF_STUDENTS];
+Student* Roster::classRosterArray1 = new Student[Roster::INITIAL_NUMBER_OF_STUDENTS];
 Student* Roster::classRosterArray[Roster::INITIAL_NUMBER_OF_STUDENTS];
 //{new Student(), new Student(), new Student(), new Student(), new Student()};
 
 int Roster::currentNumberOfStudents = Roster::INITIAL_NUMBER_OF_STUDENTS;
 
+
+
 Roster::Roster()
 {
-const string studentDataStrings[INITIAL_NUMBER_OF_STUDENTS] = {"A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY", "A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK", "A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE", "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY", "A5,Omar,Imam,oimam@my.wgu.edu,31,23,14,35,SOFTWARE" };
+std::string studentDataStrings[INITIAL_NUMBER_OF_STUDENTS] = {"A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY", "A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK", "A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE", "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY", "A5,Omar,Imam,oimam@my.wgu.edu,31,23,14,35,SOFTWARE" };
     
-    // Assign the addresses of the Students to the pointers in the classRosterArray1
-    int daysNumber[] = {5, 6, 7};
-    int *ppt = new int[3];
     
     // Parse the data in studentDataStrings
     for(int u = 0; u < INITIAL_NUMBER_OF_STUDENTS; u++ )
@@ -152,34 +150,11 @@ const string studentDataStrings[INITIAL_NUMBER_OF_STUDENTS] = {"A1,John,Smith,Jo
         
         
         
-        classRosterArray1[u] = Student(tempStringStudentId, tempStringFirstName, tempStringLastName, tempStringEmail, newProgram, std::stoi(tempStringAge), numberOfDays, numberOfDaysPointer);
+        Roster::studentArray[u] = Student(tempStringStudentId, tempStringFirstName, tempStringLastName, tempStringEmail, newProgram, std::stoi(tempStringAge), numberOfDays, numberOfDaysPointer);
 //        cout << "classRosterArray1[u]: " << classRosterArray1[u] << endl;
 //        classRosterArray1[u].print();
     }
     
-//    int theDays[3];
-//    theDays[0] = 1;
-//    theDays[1] = 2;
-//    theDays[2] = 5;
-//
-//    int* tptr = new int[3];
-//    for (int l = 0; l < 3; l++){
-//        tptr[l] = l;
-//    }
-//
-//    cout << "tptr: " << tptr[2] << endl;
-//
-//    Student *ptr = new Student[3];
-//
-//    Student* student1[] = {new Student("A10", "Harol", "duder", "person@gmail.net", DegreeProgram::SOFTWARE, 64, theDays, tptr), new Student(), new Student()};
-    
-    
-//    delete student1[0];
-//    delete student1[1];
-//    delete student1[2];
-//    cout << "Student IDIDIDIDIDIDIDID:  " << student1[1]->getStudentId();
-//    cout << "Student IDIDIDIDIDIDIDID:  " << student1[1]->getStudentId();
-//    delete [] ptr;
     
     // Assign the address of the Students to the pointers in the classRosterArray
     for (int f = 0; f < INITIAL_NUMBER_OF_STUDENTS; f++)
@@ -281,7 +256,7 @@ const string studentDataStrings[INITIAL_NUMBER_OF_STUDENTS] = {"A1,John,Smith,Jo
         // Set the number of days array for the current student
         studentArray[k].setNumDaysToCompleteCourse(numberOfDaysPointer);
         
-        string daysToComplete = studentArray[k].getNumDaysToCompleteCourse();
+        string daysToComplete = studentArray[k].getNumDaysToCompleteCourseString();
 //        cout << "Number of Days to Complete Courses: " << daysToComplete << endl;
 
         // Take the last value and put it into Degreeplan
@@ -325,7 +300,7 @@ void Roster::add(string studentId, string firstName, string lastName, string ema
 //
 //
     // Create an array out of the number of days that were passed to the function
-    int courseDays[] = {daysInCourse1, daysInCourse2, daysInCourse3};
+    int courseDays[3] = {daysInCourse1, daysInCourse2, daysInCourse3};
 
     // Create a pointer to point to the memory location of the first courseDay
     int* coursePtr = &courseDays[0];
@@ -343,52 +318,77 @@ void Roster::add(string studentId, string firstName, string lastName, string ema
 
     // Create a bigger array, copy everything from the old array to the new one, and add this new entry
     // Since we are adding 1 to the number of students in the roster, place that value into a variable
-    currentNumberOfStudents += + 1;
-    Student newStudentArray[currentNumberOfStudents];
-
-    // Create a new array for the updated class roster, the size of which is initialized with the variable above
-    Student *newClassRosterArray[currentNumberOfStudents];
+    Roster::currentNumberOfStudents += + 1;
+    Student newStudentArray[Roster::currentNumberOfStudents];
 
     // Copy the students that are already in the roster over to the new roster, when the loop reaches the last student, add the new student that was created above to the roster
-    for(int b = 0; b < currentNumberOfStudents; b++)
+    for(int b = 0; b < Roster::currentNumberOfStudents; b++)
     {
-        if(b == currentNumberOfStudents - 1){
+        if(b == Roster::currentNumberOfStudents - 1){
 //            cout << "&newStudent: " << &newStudent << endl;
             newStudentArray[b] = newStudent;
-            newStudentArray[b].print();
+            cout << "New Student: " << endl;
+//            newStudentArray[b].print();
         } else {
         newStudentArray[b] = studentArray[b];
-            newStudentArray[b].print();
+//            newStudentArray[b].print();
         }
     }
     
-//    delete &classRosterArray1[0];
-//    delete [] classRosterArray1;
-    for(int v = 0; v < currentNumberOfStudents; v++)
-    {
-        delete &classRosterArray1[v];
-    }
-    delete [] &classRosterArray1;
+    // Delete the old classRosterArray1
+    delete [] Roster::classRosterArray1;
     
-    Student* classRosterArray1 = new Student[currentNumberOfStudents];
     
-    for(int j = 0; j < currentNumberOfStudents -1; j++)
+    // Resize the classRosterArray1 to the currentNumberOfStudents
+    Roster::classRosterArray1 = new Student[currentNumberOfStudents];
+    
+    // Copy the contents of newStudentArray to classRosterArray1
+    for(int j = 0; j < currentNumberOfStudents; j++)
     {
-        classRosterArray1[j] = newStudentArray[j];
+        Roster::classRosterArray1[j].setStudentId(newStudentArray[j].getStudentId());
+        Roster::classRosterArray1[j].setFirstName(newStudentArray[j].getFirstName());
+        Roster::classRosterArray1[j].setLastName(newStudentArray[j].getLastName());
+        Roster::classRosterArray1[j].setEmailAddress(newStudentArray[j].getEmail());
+        Roster::classRosterArray1[j].setAge(newStudentArray[j].getAge());
+        Roster::classRosterArray1[j].setDegreeProgram(newStudentArray[j].getDegreeProgram());
         
-        classRosterArray1[j].print();
+        // Get the number of days to complete their courses as a string
+        string tempNumberOfDaysString = newStudentArray[j].getNumDaysToCompleteCourseString();
+        
+        // Parse the string as an array of ints
+        int numberOfDays[3];
+        size_t begin = 0;
+        
+        size_t delimiter = tempNumberOfDaysString.find(",", begin);
+        string tempNumberOfDays = tempNumberOfDaysString.substr(begin, delimiter - begin);
+        
+        // Place the first number of days into the array
+        numberOfDays[0] = std::stoi(tempNumberOfDays);
+//        cout << "Number of Days (1): " +std::to_string(numberOfDays[0]) << endl;
+
+        begin = delimiter + 1;
+        delimiter = tempNumberOfDaysString.find(",", begin);
+        tempNumberOfDays = tempNumberOfDaysString.substr(begin, delimiter - begin);
+        
+//         Place the second number of days into the array
+        numberOfDays[1] = std::stoi(tempNumberOfDays);
+//        cout << "Number of Days (2): " + std::to_string(numberOfDays[1]) << endl;
+
+        begin = delimiter + 1;
+        delimiter = tempNumberOfDaysString.find(",", begin);
+        tempNumberOfDays = tempNumberOfDaysString.substr(begin, delimiter - begin);
+        
+        // Place the third number of days into the array
+        numberOfDays[2] = std::stoi(tempNumberOfDays);
+//        cout << "Number of Days (3): " + std::to_string(numberOfDays[2]) << endl;
+        
+        // Create a pointer to the numberOfDays array
+        int* numberOfDaysPointer = &numberOfDays[0];
+        
+        Roster::classRosterArray1[j].setNumDaysToCompleteCourse(numberOfDaysPointer);
+//        classRosterArray1[j].print();
     }
-    classRosterArray1[5].print();
-//    std::copy( studentArray, array+std::min((currentNumberOfStudents-1), currentNumberOfStudents, newArray));
-//    for(int j = 0; j < currentNumberOfStudents -1; j++){
-//        delete studentArray[j]
-//    }
-//    delete[] studentArray;
-//    studentArray = newArray;
-    
-//    Student studentArray[] = {newStudentArray[0], newStudentArray[1], newStudentArray[2], newStudentArray[3], newStudentArray[4], newStudentArray[5], newStudentArray[6]};
-    
-       
+//    cout << "CURRENT NUMBER OF STUDENTS ADD FUNCTION: " << currentNumberOfStudents << endl;
 };
 
 // Destructor
@@ -396,49 +396,139 @@ Roster::~Roster(){};
 
 // Remove a student from the roster by Id
 void Roster::remove(string removeId){
-    cout << "REMOVE: " << removeId << endl;
-    // Find a student by ID number
-    for(int p = 0; p < INITIAL_NUMBER_OF_STUDENTS; p++)
+    cout << "REMOVING STUDENT WITH ID: " << removeId << endl;
+    
+    bool studentFound = false;
+    Student removedStudent;
+    Student* newStudentArray = new Student[INITIAL_NUMBER_OF_STUDENTS];
+    cout << "CURRENT NUMBER OF STUDENTS REMOVE: " << Roster::currentNumberOfStudents << endl;
+    
+    // Find student that matches the removeId
+    for(int g = 0; g < Roster::currentNumberOfStudents; g++)
     {
-        if(classRosterArray1[p].getStudentId() == removeId)
+        
+        if(Roster::classRosterArray1[g].getStudentId() == removeId)
         {
-            // Remove the student
-//            classRosterArray1[p] = Student();
-//            delete [] classRosterArray1;
-//            delete &classRosterArray1[p];
-            cout << "Student " << removeId << " deleted!" << endl;
+            removedStudent = Roster::classRosterArray1[g];
+            cout << "REMOVED STUDENT: " << endl;
+            studentFound = true;
             currentNumberOfStudents -= 1;
-            cout << currentNumberOfStudents << endl;
+        }
+        else
+        {
+            continue;
+        }
+        
+    }
+    
+    if (studentFound == false)
+    {
+        cout << "Student with ID " << removeId << " not found!\n" << endl;
+    }
+    
+    
+    // Counter for new student Array
+    int s = 0;
+    
+    // Copy all students over to a temporary array except removedStudent
+    for(int b = 0; b <= Roster::currentNumberOfStudents; b++)
+    {
+        
+        // If the ID of the current student is the same as the removedStudent, skip it
+        if(Roster::classRosterArray1[b].getStudentId() == removedStudent.getStudentId())
+        {
+            continue;
+        }
+        else //  Otherwise, copy the current student to the new student array
+        {
+            newStudentArray[s] = Roster::classRosterArray1[b];
+            cout << "newStudentArray[s]: " << newStudentArray[s].getFirstName() << endl;
+            s++;
         }
     }
-    // Remove the student at the ID number location
+    
+    // Delete the old classRosterArray1
+    delete [] Roster::classRosterArray1;
+    
+    // Resize the classRosterArray1 to the currentNumberOfStudents
+    Roster::classRosterArray1 = new Student[currentNumberOfStudents];
 
-    Roster::printAll();
+    cout << "CURRENT: " << Roster::currentNumberOfStudents << endl;
+    // Copy the contents of newStudentArray to the resized classRosterArray1
+    for(int j = 0; j < Roster::currentNumberOfStudents; j++)
+    {
+        Roster::classRosterArray1[j].setStudentId(newStudentArray[j].getStudentId());
+        Roster::classRosterArray1[j].setFirstName(newStudentArray[j].getFirstName());
+        Roster::classRosterArray1[j].setLastName(newStudentArray[j].getLastName());
+        Roster::classRosterArray1[j].setEmailAddress(newStudentArray[j].getEmail());
+        Roster::classRosterArray1[j].setAge(newStudentArray[j].getAge());
+        Roster::classRosterArray1[j].setDegreeProgram(newStudentArray[j].getDegreeProgram());
+        
+        // Get the number of days to complete their courses as a string
+        string tempNumberOfDaysString = newStudentArray[j].getNumDaysToCompleteCourseString();
+        
+        // Parse the string as an array of ints
+        int numberOfDays[3];
+        size_t begin = 0;
+        
+        size_t delimiter = tempNumberOfDaysString.find(",", begin);
+        string tempNumberOfDays = tempNumberOfDaysString.substr(begin, delimiter - begin);
+        
+        // Place the first number of days into the array
+        numberOfDays[0] = std::stoi(tempNumberOfDays);
+//        cout << "Number of Days (1): " +std::to_string(numberOfDays[0]) << endl;
+
+        begin = delimiter + 1;
+        delimiter = tempNumberOfDaysString.find(",", begin);
+        tempNumberOfDays = tempNumberOfDaysString.substr(begin, delimiter - begin);
+        
+//         Place the second number of days into the array
+        numberOfDays[1] = std::stoi(tempNumberOfDays);
+//        cout << "Number of Days (2): " + std::to_string(numberOfDays[1]) << endl;
+
+        begin = delimiter + 1;
+        delimiter = tempNumberOfDaysString.find(",", begin);
+        tempNumberOfDays = tempNumberOfDaysString.substr(begin, delimiter - begin);
+        
+        // Place the third number of days into the array
+        numberOfDays[2] = std::stoi(tempNumberOfDays);
+//        cout << "Number of Days (3): " + std::to_string(numberOfDays[2]) << endl;
+        
+        // Create a pointer to the numberOfDays array
+        int* numberOfDaysPointer = &numberOfDays[0];
+        
+        Roster::classRosterArray1[j].setNumDaysToCompleteCourse(numberOfDaysPointer);
+//        Roster::classRosterArray1[j].print();
+    }
+    
+//    cout << "LAST: " << endl;
+//    Roster::classRosterArray1[5].print();
+    
     return;
 };
 
 
 
 // Print all students in the roster
-void Roster::printAll(){
+void Roster::printAll() const {
 //    // Loop through the classRosterArray to print out the values from each student
-    for(int h =0; h < currentNumberOfStudents; h++)
+    for(int h =0; h < Roster::currentNumberOfStudents; h++)
     {
-        cout << classRosterArray1[h].getStudentId() << "\tFirst Name: " << classRosterArray1[h].getFirstName() << "\tLast Name: " <<  classRosterArray1[h].getLastName() << "\tAge: " << classRosterArray1[h].getAge() <<"\tEmail: " << classRosterArray1[h].getEmail() << "\tdaysInCourse: {" << classRosterArray1[h].getNumDaysToCompleteCourse() << "}" << "\tDegree Program: " << classRosterArray1[h].getDegreeProgram() << endl;
+//        cout << "Current Number of Students: " << currentNumberOfStudents << endl;
+        cout << Roster::classRosterArray1[h].getStudentId() << "\tFirst Name: " << Roster::classRosterArray1[h].getFirstName() << "\tLast Name: " << Roster::classRosterArray1[h].getLastName() << "\tAge: " << Roster::classRosterArray1[h].getAge() << "\tEmail: " << Roster::classRosterArray1[h].getEmail() << "\tdaysInCourse: {" << Roster::classRosterArray1[h].getNumDaysToCompleteCourseString() << "}" << "\tDegree Program: " << Roster::classRosterArray1[h].getDegreeProgramString() << endl;
         cout << endl;
         cout << endl;
-        
     }
     
     return;
 };
 
 // Print the average number of days for a given student ID
-void Roster::printAverageDaysInCourse(string studentId){
-    for(int c = 0; c < currentNumberOfStudents; c++){
+void Roster::printAverageDaysInCourse(string studentId) const {
+    for(int c = 0; c < Roster::currentNumberOfStudents; c++){
         if(studentArray[c].getStudentId() == studentId)
         {
-            string days = studentArray[c].getNumDaysToCompleteCourse();
+            string days = studentArray[c].getNumDaysToCompleteCourseString();
 //            cout << "days: " << days << endl;
             
             // Find the first comma
@@ -465,15 +555,16 @@ void Roster::printAverageDaysInCourse(string studentId){
             cout << endl;
         }
     }
+//    cout << "CURRENT NUMBER OF STUDENTS AVG DAYS FUNCTION: " << currentNumberOfStudents << endl;
     return;
 };
 
 // Validate emails, print the ones that are not formatted correctly.
-void Roster::printInvalidEmails()
+void Roster::printInvalidEmails() const
 {
     
     vector<string> invalidEmails;
-    for (int w = 0; w < currentNumberOfStudents; w++)
+    for (int w = 0; w < Roster::currentNumberOfStudents; w++)
     {
          static bool isValid = true;
         // Check for '@'
@@ -516,7 +607,7 @@ void Roster::printInvalidEmails()
 };
 
 // Print out student information for a degree program specified by a a Degree Program Enum
-void Roster::printByDegreeProgram(DegreeProgram degreeProgram){
+void Roster::printByDegreeProgram(DegreeProgram degreeProgram) const {
     
     std::vector<Student> foundStudents;
     string searchedProgram;
@@ -543,7 +634,7 @@ void Roster::printByDegreeProgram(DegreeProgram degreeProgram){
     // Search through the studentArray for anyone that has the searched degree program chosen
     for(int q = 0; q < Roster::currentNumberOfStudents; q++)
     {
-        if (Roster::studentArray[q].getDegreeProgram() == searchedProgram)
+        if (Roster::studentArray[q].getDegreeProgramString() == searchedProgram)
         {
             foundStudents.push_back(Roster::studentArray[q]);
         }
@@ -552,7 +643,6 @@ void Roster::printByDegreeProgram(DegreeProgram degreeProgram){
     
     cout << "Students with degree program " << searchedProgram << ":" << endl;
     
-//    foundStudents.at(0).print();
     for(int r = 0; r < foundStudents.size(); r++)
     {
         foundStudents.at(r).print();

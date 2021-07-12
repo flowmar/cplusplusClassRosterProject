@@ -37,9 +37,10 @@ public:
     string getFirstName() const;
     string getLastName() const;
     string getEmail() const;
-    string getDegreeProgram() const;
+    string getDegreeProgramString() const;
+    DegreeProgram getDegreeProgram() const;
     int getAge() const;
-    string getNumDaysToCompleteCourse();
+    string getNumDaysToCompleteCourseString();
     
 
     // Mutators

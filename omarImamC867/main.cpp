@@ -24,11 +24,14 @@ int main() {
     cout << "Name: Omar Imam" << endl;
     cout << endl;
     
+
+   
+    
     // Create an instance of the Roster class
     // Add each student to the roster
     Roster classRoster;
     
-//    classRoster.add("A8", "Person", "Person", "person@gmailcom", 5, 10, 45, 11, DegreeProgram::NETWORK);
+    classRoster.add("A8", "Person", "Person", "person@gmailcom", 5, 10, 45, 11, DegreeProgram::NETWORK);
     
     // Print entire roster
     classRoster.printAll();
@@ -40,7 +43,7 @@ int main() {
     // Loop through classRosterArray and for each element:
     for(int g = 0; g < Roster::currentNumberOfStudents; g++)
     {
-        classRoster.Roster::printAverageDaysInCourse(classRosterArray1[g].getStudentId());
+        classRoster.Roster::printAverageDaysInCourse(Roster::classRosterArray1[g].getStudentId());
     }
     
     // Print out all students who are enrolled in the SOFTWARE degree program
@@ -54,30 +57,6 @@ int main() {
     
     // Display an error message
     classRoster.remove("A4");
-    
-    
-    
-   
-    
-    // Create an instance of the Roster class
-//    Roster myRoster = new Roster(studentData);
-    
-//    myRoster.remove("A1");
-    
-    
-    // Add each student to the class Roster
-    
-    // classRoster.printAll()
-    
-    // classRoster.printInvalidEmails()
-    
-    // classRoster.printByDegreeProgram
-    
-    // classRoster.remove("A3") -- implement Destructor function
-    
-    // classRoster.printAll()
-    
-    // classRoster.remove("A3") (should give an error)
     
     
     return 0;
