@@ -43,7 +43,7 @@ int main() {
     // Loop through classRosterArray and for each element:
     for(int g = 0; g < Roster::currentNumberOfStudents; g++)
     {
-        classRoster.Roster::printAverageDaysInCourse(Roster::classRosterArray1[g].getStudentId());
+        classRoster.Roster::printAverageDaysInCourse(Roster::classRosterArray[g].getStudentId());
     }
     
     // Print out all students who are enrolled in the SOFTWARE degree program

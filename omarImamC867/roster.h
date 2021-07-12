@@ -19,8 +19,7 @@ class Roster {
 public:
     static int const INITIAL_NUMBER_OF_STUDENTS = 5;
     static Student studentArray[INITIAL_NUMBER_OF_STUDENTS];
-    static Student* classRosterArray1;
-    static Student* classRosterArray[];
+    static Student* classRosterArray;
     static int currentNumberOfStudents;
     
 //    static const std::string studentDataStrings[INITIAL_NUMBER_OF_STUDENTS];
